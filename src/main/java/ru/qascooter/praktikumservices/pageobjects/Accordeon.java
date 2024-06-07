@@ -60,7 +60,7 @@ public class Accordeon {
 
 
 
-    //все методы клика на вопросы и получения текста ответов
+   //все методы клика на вопросы и получения текста ответов
 
     public void clickOnQuestionsAndHaveAnswersTexts() {
         questionOneAboutCost.scrollTo().click();
@@ -80,5 +80,11 @@ public class Accordeon {
         questionSevenAboutMoscowRegions.click();
         answerSevenAboutMoscowRegions.shouldHave(text("Да, обязательно. Всем самокатов! И Москве, и Московской области."));
     }
-
+    public String getAnswerTextByQuestionLocator(SelenideElement questionLocator) {
+        // Открываем вопрос, чтобы увидеть ответ
+        questionLocator.click();
+        // Получаем текст ответа, который является следующим элементом после вопроса
+        SelenideElement answer = questionLocator.sibling(0);
+        return answer.text();
+    }
 }
